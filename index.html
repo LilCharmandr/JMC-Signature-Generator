@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMC Signature Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JMC Signature Generator</h1>
+            <p>Create professional email signatures for JMC and its camps</p>
+        </header>
+
+        <div class="main-content">
+            <div class="form-section">
+                <h2>Signature Details</h2>
+                <form id="signatureForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Position *</label>
+                        <input type="text" id="position" name="position" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institution">Institution/Camp *</label>
+                        <select id="institution" name="institution" required>
+                            <option value="">Select Institution/Camp</option>
+                            <option value="JMC">JMC</option>
+                            <option value="Mosaic">Mosaic</option>
+                            <option value="Embark">Embark</option>
+                            <option value="Al-Ummah">Al-Ummah</option>
+                            <option value="Vibe">Vibe</option>
+                            <option value="Khidma">Khidma</option>
+                            <option value="Olympia">Olympia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="region">Region/Jurisdiction *</label>
+                        <select id="region" name="region" required>
+                            <option value="">Select Region/Jurisdiction</option>
+                            <option value="National">National</option>
+                            <option value="Northeast">Northeast</option>
+                            <option value="Southeast">Southeast</option>
+                            <option value="Southwest">Southwest</option>
+                            <option value="West">West</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Central">Central</option>
+                            <option value="Midwest">Midwest</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">JMC Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Generate Signature</button>
+                </form>
+            </div>
+
+            <div class="preview-section">
+                <h2>Signature Preview</h2>
+                <div class="signature-preview" id="signaturePreview">
+                    <div class="signature-placeholder">
+                        <p>Fill out the form to see your signature preview</p>
+                    </div>
+                </div>
+                <div class="signature-actions" id="signatureActions" style="display: none;">
+                    <button class="btn-secondary" id="copySignature">
+                        <i class="fas fa-copy"></i> Copy Signature
+                    </button>
+                    <button class="btn-secondary" id="downloadSignature">
+                        <i class="fas fa-download"></i> Download as Image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
