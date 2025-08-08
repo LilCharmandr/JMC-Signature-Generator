@@ -1,6 +1,6 @@
 # JMC Signature Generator
 
-A professional email signature generator for JMC (Jamaat Management Committee) and its various camps including Mosaic, Embark, Al-Ummah, Vibe, Khidma, and Olympia.
+A professional email signature generator for JMC (Jubilee Monuments Corp.) and its various camps including Mosaic, Embark, Al-Ummah, Vibe, Khidma, and Olympia.
 
 ## Features
 
@@ -14,7 +14,7 @@ A professional email signature generator for JMC (Jamaat Management Committee) a
 
 ## Supported Camps
 
-- **JMC** - Main Jamaat Management Committee
+- **JMC** - Main Jubilee Monuments Corp.
 - **Mosaic** - Youth engagement program
 - **Embark** - Leadership development program
 - **Al-Ummah** - Community service program

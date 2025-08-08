@@ -2,7 +2,7 @@
 const campData = {
     'JMC': {
         logo: 'https://via.placeholder.com/80x80/667eea/ffffff?text=JMC',
-        name: 'JMC',
+        name: 'Jubilee Monuments Corp.',
         social: {
             facebook: 'https://facebook.com/jmc',
             instagram: 'https://instagram.com/jmc',
@@ -150,7 +150,8 @@ function updateSignature() {
         signatureContent += `<div class="signature-institution">${institution}</div>`;
     }
     if (region) {
-        signatureContent += `<div class="signature-region">JMC ${separator} ${region}</div>`;
+        const regionText = institution === 'JMC' ? region : `JMC ${separator} ${region}`;
+        signatureContent += `<div class="signature-region">${regionText}</div>`;
     }
     if (email || phone) {
         signatureContent += `<div class="signature-contact">`;
@@ -193,7 +194,10 @@ function generateHTMLSignature() {
     if (name) textContent.push(`<span style="font-size:13px;font-weight:bold;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${name}</span>`);
     if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
     if (institution) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${institution}</span>`);
-    if (region) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">JMC${separator}${region}</span>`);
+    if (region) {
+        const regionText = institution === 'JMC' ? region : `JMC${separator}${region}`;
+        textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${regionText}</span>`);
+    }
 
     // Contact line
     const contactParts = [];
