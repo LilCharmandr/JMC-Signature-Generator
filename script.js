@@ -200,73 +200,101 @@ function generateHTMLSignature() {
     const camp = campData[institution];
     const separator = ' | ';
 
-    // Build text content
-    const textContent = [];
-    if (name) textContent.push(`<span style="font-size:13px;font-weight:bold;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${name}</span>`);
-    if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
-    if (institution) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${camp.name}</span>`);
+    // Build signature content for Gmail compatibility
+    let signatureHTML = '<div style="font-family: Arial, sans-serif; font-size: 12px; color: #333; line-height: 1.4;">';
+    
+    // Add logo and company name
+    signatureHTML += `<div style="margin-bottom: 10px;">
+        <img src="${camp.logo}" alt="${camp.name}" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
+        <span style="font-weight: bold; font-size: 14px; color: #333;">${camp.name}</span>
+    </div>`;
+    
+    // Add personal info
+    if (name) {
+        signatureHTML += `<div style="font-weight: bold; font-size: 14px; color: #333; margin-bottom: 2px;">${name}</div>`;
+    }
+    if (position) {
+        signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">${position}</div>`;
+    }
+    if (institution) {
+        signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">${camp.name}</div>`;
+    }
     if (region) {
-        const regionText = `Jubilee Monuments Corp.${separator}${region}`;
-        textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${regionText}</span>`);
+        signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">Jubilee Monuments Corp. ${separator} ${region}</div>`;
     }
-
-    // Contact line
-    const contactParts = [];
-    if (email) contactParts.push(`<a href="mailto:${email}" style="color:#0366d6;text-decoration:underline;font-size:11px;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${email}</a>`);
-    if (phone) contactParts.push(`<span style="color:#222;font-size:11px;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${phone}</span>`);
-    if (contactParts.length > 0) {
-        textContent.push(`<br><span style="margin:0;padding:0;line-height:1.2;">${contactParts.join(separator)}</span>`);
+    
+    // Add contact info
+    if (email || phone) {
+        signatureHTML += '<div style="margin-top: 8px;">';
+        if (email) {
+            signatureHTML += `<a href="mailto:${email}" style="color: #0066cc; text-decoration: none; font-size: 12px;">${email}</a>`;
+        }
+        if (email && phone) {
+            signatureHTML += ` ${separator} `;
+        }
+        if (phone) {
+            signatureHTML += `<span style="font-size: 12px; color: #333;">${phone}</span>`;
+        }
+        signatureHTML += '</div>';
     }
-
-    return `<!--[if mso]>
-<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;">
-<tr>
-<td style="padding:0;margin:0;">
-<![endif]-->
-<style type="text/css">
-/* Apple Mail specific fixes */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  table[role="presentation"] {
-    table-layout: fixed !important;
-    border-collapse: collapse !important;
-  }
-  table[role="presentation"] td {
-    display: table-cell !important;
-    background-color: transparent !important;
-    background: transparent !important;
-  }
-}
-</style>
-<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="font-family:Georgia,serif;font-size:11px;color:#222;border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;line-height:1;background:transparent;background-color:transparent;">
-  <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
-    <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
-      <img src="${camp.logo}" alt="${camp.name} Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
-      <span style="margin:0;padding:0;line-height:1.2;"><a href="${camp.social.facebook}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="https://via.placeholder.com/16x16/1877f2/ffffff?text=f" alt="Facebook" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.instagram}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="https://via.placeholder.com/16x16/e4405f/ffffff?text=ig" alt="Instagram" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.youtube}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="https://via.placeholder.com/16x16/ff0000/ffffff?text=yt" alt="YouTube" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="https://via.placeholder.com/16x16/4a5568/ffffff?text=www" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a></span>
-    </td>
-    <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
-    <td style="vertical-align:middle;text-align:left;font-family:Georgia,serif;margin:0;padding:0;">
-      <div style="font-family:Georgia,serif;font-size:11px;line-height:1.2;margin:0;padding:0;">
-        ${textContent.join('<br style="margin:0;padding:0;">')}
-      </div>
-    </td>
-  </tr>
-</table>
-<!--[if mso]>
-</td>
-</tr>
-</table>
-<![endif]-->`;
+    
+    // Add social media links
+    signatureHTML += `<div style="margin-top: 8px;">
+        <a href="${camp.social.facebook}" target="_blank" style="text-decoration: none; margin-right: 8px;">
+            <span style="color: #1877f2; font-size: 12px;">Facebook</span>
+        </a>
+        <a href="${camp.social.instagram}" target="_blank" style="text-decoration: none; margin-right: 8px;">
+            <span style="color: #e4405f; font-size: 12px;">Instagram</span>
+        </a>
+        <a href="${camp.social.youtube}" target="_blank" style="text-decoration: none; margin-right: 8px;">
+            <span style="color: #ff0000; font-size: 12px;">YouTube</span>
+        </a>
+        <a href="${camp.social.website}" target="_blank" style="text-decoration: none;">
+            <span style="color: #0066cc; font-size: 12px;">Website</span>
+        </a>
+    </div>`;
+    
+    signatureHTML += '</div>';
+    
+    return signatureHTML;
 }
 
 // Copy signature to clipboard
 function copySignature() {
     const htmlSignature = generateHTMLSignature();
     
-    // Create a temporary textarea to copy the HTML
-    const textarea = document.createElement('textarea');
-    textarea.value = htmlSignature;
-    document.body.appendChild(textarea);
-    textarea.select();
+    // Try to use the modern clipboard API first
+    if (navigator.clipboard && window.ClipboardItem) {
+        const blob = new Blob([htmlSignature], { type: 'text/html' });
+        const clipboardItem = new ClipboardItem({ 'text/html': blob });
+        
+        navigator.clipboard.write([clipboardItem]).then(() => {
+            showNotification('Signature copied to clipboard!', 'success');
+        }).catch(() => {
+            // Fallback to the old method
+            fallbackCopy(htmlSignature);
+        });
+    } else {
+        // Fallback for older browsers
+        fallbackCopy(htmlSignature);
+    }
+}
+
+// Fallback copy method
+function fallbackCopy(htmlSignature) {
+    // Create a temporary div to hold the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlSignature;
+    tempDiv.style.position = 'absolute';
+    tempDiv.style.left = '-9999px';
+    document.body.appendChild(tempDiv);
+    
+    // Select the content
+    const range = document.createRange();
+    range.selectNodeContents(tempDiv);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
     
     try {
         document.execCommand('copy');
@@ -275,7 +303,9 @@ function copySignature() {
         showNotification('Copy failed. Please try selecting and copying manually.', 'error');
     }
     
-    document.body.removeChild(textarea);
+    // Clean up
+    document.body.removeChild(tempDiv);
+    selection.removeAllRanges();
 }
 
 // Download signature as image
