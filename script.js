@@ -147,7 +147,7 @@ function updateSignature() {
         signatureContent += `<div class="signature-position">${position}</div>`;
     }
     if (institution) {
-        signatureContent += `<div class="signature-institution">${institution}</div>`;
+        signatureContent += `<div class="signature-institution">${camp.name}</div>`;
     }
     if (region) {
         const regionText = institution === 'JMC' ? region : `Jubilee Monuments Corp. ${separator} ${region}`;
@@ -193,7 +193,7 @@ function generateHTMLSignature() {
     const textContent = [];
     if (name) textContent.push(`<span style="font-size:13px;font-weight:bold;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${name}</span>`);
     if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
-    if (institution) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${institution}</span>`);
+    if (institution) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${camp.name}</span>`);
     if (region) {
         const regionText = institution === 'JMC' ? region : `Jubilee Monuments Corp.${separator}${region}`;
         textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${regionText}</span>`);
