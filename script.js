@@ -110,8 +110,19 @@ function updateSignature() {
         return;
     }
 
-    const camp = campData[institution] || campData['JMC'];
+    const camp = campData[institution];
     const separator = ' | ';
+
+    // Only show signature if institution is selected
+    if (!camp) {
+        preview.innerHTML = `
+            <div class="signature-placeholder">
+                <p>Please select an Institution/Camp to see your signature preview</p>
+            </div>
+        `;
+        actions.style.display = 'none';
+        return;
+    }
 
     // Build signature content
     let signatureContent = `
@@ -150,7 +161,7 @@ function updateSignature() {
         signatureContent += `<div class="signature-institution">${camp.name}</div>`;
     }
     if (region) {
-        const regionText = institution === 'JMC' ? region : `Jubilee Monuments Corp. ${separator} ${region}`;
+        const regionText = `Jubilee Monuments Corp. ${separator} ${region}`;
         signatureContent += `<div class="signature-region">${regionText}</div>`;
     }
     if (email || phone) {
@@ -186,7 +197,7 @@ function generateHTMLSignature() {
     const email = document.getElementById('email').value || '';
     const phone = document.getElementById('phone').value || '';
 
-    const camp = campData[institution] || campData['JMC'];
+    const camp = campData[institution];
     const separator = ' | ';
 
     // Build text content
@@ -195,7 +206,7 @@ function generateHTMLSignature() {
     if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
     if (institution) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${camp.name}</span>`);
     if (region) {
-        const regionText = institution === 'JMC' ? region : `Jubilee Monuments Corp.${separator}${region}`;
+        const regionText = `Jubilee Monuments Corp.${separator}${region}`;
         textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${regionText}</span>`);
     }
 
