@@ -227,38 +227,43 @@ function generateHTMLSignature() {
     const separator = ' | ';
 
     // Build signature content for Gmail compatibility
-    let signatureHTML = '<div style="font-family: Arial, sans-serif; font-size: 12px; color: #333; line-height: 1.4;">';
+    let signatureHTML = '<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #333333; line-height: 1.4;">';
     
-    // Add logo and company name
+    // Add logo and company name row
+    signatureHTML += '<tr><td style="padding-bottom: 8px;">';
+    signatureHTML += '<table cellpadding="0" cellspacing="0" border="0">';
+    signatureHTML += '<tr>';
+    signatureHTML += '<td style="vertical-align: top; padding-right: 10px;">';
+    signatureHTML += `<img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: block;">`;
+    signatureHTML += '</td>';
+    signatureHTML += '<td style="vertical-align: top;">';
     if (camp) {
-        signatureHTML += `<div style="margin-bottom: 10px;">
-            <img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
-            <span style="font-weight: bold; font-size: 14px; color: #333;">${camp.name}</span>
-        </div>`;
+        signatureHTML += `<div style="font-weight: bold; font-size: 14px; color: #333333;">${camp.name}</div>`;
     } else {
-        signatureHTML += `<div style="margin-bottom: 10px;">
-            <img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
-            <span style="font-weight: bold; font-size: 14px; color: #333;">Jubilee Monuments Corp.</span>
-        </div>`;
+        signatureHTML += `<div style="font-weight: bold; font-size: 14px; color: #333333;">Jubilee Monuments Corp.</div>`;
     }
+    signatureHTML += '</td>';
+    signatureHTML += '</tr>';
+    signatureHTML += '</table>';
+    signatureHTML += '</td></tr>';
     
     // Add personal info
     if (name) {
-        signatureHTML += `<div style="font-weight: bold; font-size: 14px; color: #333; margin-bottom: 2px;">${name}</div>`;
+        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-weight: bold; font-size: 14px; color: #333333;">${name}</div></td></tr>`;
     }
     if (position) {
-        signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">${position}</div>`;
+        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-size: 12px; color: #666666;">${position}</div></td></tr>`;
     }
     if (institution && camp) {
-        signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">${camp.name}</div>`;
+        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-size: 12px; color: #666666;">${camp.name}</div></td></tr>`;
     }
     if (region) {
-        signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">Jubilee Monuments Corp. ${separator} ${region}</div>`;
+        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-size: 12px; color: #666666;">Jubilee Monuments Corp. ${separator} ${region}</div></td></tr>`;
     }
     
     // Add contact info
     if (email || phone) {
-        signatureHTML += '<div style="margin-top: 8px;">';
+        signatureHTML += '<tr><td style="padding-top: 8px; padding-bottom: 8px;">';
         if (email) {
             signatureHTML += `<a href="mailto:${email}" style="color: #0066cc; text-decoration: none; font-size: 12px;">${email}</a>`;
         }
@@ -266,45 +271,27 @@ function generateHTMLSignature() {
             signatureHTML += ` ${separator} `;
         }
         if (phone) {
-            signatureHTML += `<span style="font-size: 12px; color: #333;">${phone}</span>`;
+            signatureHTML += `<span style="font-size: 12px; color: #333333;">${phone}</span>`;
         }
-        signatureHTML += '</div>';
+        signatureHTML += '</td></tr>';
     }
     
     // Add social media links
+    signatureHTML += '<tr><td style="padding-top: 8px;">';
     if (camp) {
-        signatureHTML += `<div style="margin-top: 8px;">
-            <a href="${camp.social.facebook}" target="_blank" style="text-decoration: none; margin-right: 8px;">
-                <span style="color: #1877f2; font-size: 12px;">Facebook</span>
-            </a>
-            <a href="${camp.social.instagram}" target="_blank" style="text-decoration: none; margin-right: 8px;">
-                <span style="color: #e4405f; font-size: 12px;">Instagram</span>
-            </a>
-            <a href="${camp.social.youtube}" target="_blank" style="text-decoration: none; margin-right: 8px;">
-                <span style="color: #ff0000; font-size: 12px;">YouTube</span>
-            </a>
-            <a href="${camp.social.website}" target="_blank" style="text-decoration: none;">
-                <span style="color: #0066cc; font-size: 12px;">Website</span>
-            </a>
-        </div>`;
+        signatureHTML += `<a href="${camp.social.facebook}" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #1877f2; font-size: 12px;">Facebook</span></a>`;
+        signatureHTML += `<a href="${camp.social.instagram}" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #e4405f; font-size: 12px;">Instagram</span></a>`;
+        signatureHTML += `<a href="${camp.social.youtube}" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #ff0000; font-size: 12px;">YouTube</span></a>`;
+        signatureHTML += `<a href="${camp.social.website}" target="_blank" style="text-decoration: none;"><span style="color: #0066cc; font-size: 12px;">Website</span></a>`;
     } else {
-        signatureHTML += `<div style="margin-top: 8px;">
-            <a href="https://facebook.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;">
-                <span style="color: #1877f2; font-size: 12px;">Facebook</span>
-            </a>
-            <a href="https://instagram.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;">
-                <span style="color: #e4405f; font-size: 12px;">Instagram</span>
-            </a>
-            <a href="https://youtube.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;">
-                <span style="color: #ff0000; font-size: 12px;">YouTube</span>
-            </a>
-            <a href="https://jmc.org" target="_blank" style="text-decoration: none;">
-                <span style="color: #0066cc; font-size: 12px;">Website</span>
-            </a>
-        </div>`;
+        signatureHTML += `<a href="https://facebook.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #1877f2; font-size: 12px;">Facebook</span></a>`;
+        signatureHTML += `<a href="https://instagram.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #e4405f; font-size: 12px;">Instagram</span></a>`;
+        signatureHTML += `<a href="https://youtube.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #ff0000; font-size: 12px;">YouTube</span></a>`;
+        signatureHTML += `<a href="https://jmc.org" target="_blank" style="text-decoration: none;"><span style="color: #0066cc; font-size: 12px;">Website</span></a>`;
     }
+    signatureHTML += '</td></tr>';
     
-    signatureHTML += '</div>';
+    signatureHTML += '</table>';
     
     return signatureHTML;
 }
