@@ -12,7 +12,7 @@ const campData = {
     },
     'Mosaic': {
         logo: 'https://via.placeholder.com/80x80/8b5cf6/ffffff?text=Mosaic',
-        name: 'Mosaic',
+        name: 'Camp Mosaic',
         social: {
             facebook: 'https://facebook.com/mosaic',
             instagram: 'https://instagram.com/mosaic',
@@ -22,7 +22,7 @@ const campData = {
     },
     'Embark': {
         logo: 'https://via.placeholder.com/80x80/06b6d4/ffffff?text=Embark',
-        name: 'Embark',
+        name: 'Camp Embark',
         social: {
             facebook: 'https://facebook.com/embark',
             instagram: 'https://instagram.com/embark',
@@ -32,7 +32,7 @@ const campData = {
     },
     'Al-Ummah': {
         logo: 'https://via.placeholder.com/80x80/059669/ffffff?text=Al-Ummah',
-        name: 'Al-Ummah',
+        name: 'Camp Al-Ummah',
         social: {
             facebook: 'https://facebook.com/al-ummah',
             instagram: 'https://instagram.com/al-ummah',
@@ -42,7 +42,7 @@ const campData = {
     },
     'Vibe': {
         logo: 'https://via.placeholder.com/80x80/f59e0b/ffffff?text=Vibe',
-        name: 'Vibe',
+        name: 'Camp Vibe',
         social: {
             facebook: 'https://facebook.com/vibe',
             instagram: 'https://instagram.com/vibe',
@@ -52,7 +52,7 @@ const campData = {
     },
     'Khidma': {
         logo: 'https://via.placeholder.com/80x80/dc2626/ffffff?text=Khidma',
-        name: 'Khidma',
+        name: 'Camp Khidma',
         social: {
             facebook: 'https://facebook.com/khidma',
             instagram: 'https://instagram.com/khidma',
@@ -62,7 +62,7 @@ const campData = {
     },
     'Olympia': {
         logo: 'https://via.placeholder.com/80x80/7c3aed/ffffff?text=Olympia',
-        name: 'Olympia',
+        name: 'Camp Olympia',
         social: {
             facebook: 'https://facebook.com/olympia',
             instagram: 'https://instagram.com/olympia',
@@ -150,7 +150,7 @@ function updateSignature() {
         signatureContent += `<div class="signature-institution">${institution}</div>`;
     }
     if (region) {
-        const regionText = institution === 'JMC' ? region : `JMC ${separator} ${region}`;
+        const regionText = institution === 'JMC' ? region : `Jubilee Monuments Corp. ${separator} ${region}`;
         signatureContent += `<div class="signature-region">${regionText}</div>`;
     }
     if (email || phone) {
@@ -195,7 +195,7 @@ function generateHTMLSignature() {
     if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
     if (institution) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${institution}</span>`);
     if (region) {
-        const regionText = institution === 'JMC' ? region : `JMC${separator}${region}`;
+        const regionText = institution === 'JMC' ? region : `Jubilee Monuments Corp.${separator}${region}`;
         textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${regionText}</span>`);
     }
 
