@@ -226,26 +226,29 @@ function generateHTMLSignature() {
     const camp = campData[institution];
     const separator = ' | ';
 
-    // Build signature content for Gmail compatibility
+    // Build signature content for Gmail compatibility with vertical divider
     let signatureHTML = '<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #333333; line-height: 1.4;">';
-    
-    // Add logo and company name row
-    signatureHTML += '<tr><td style="padding-bottom: 8px;">';
-    signatureHTML += '<table cellpadding="0" cellspacing="0" border="0">';
     signatureHTML += '<tr>';
-    signatureHTML += '<td style="vertical-align: top; padding-right: 10px;">';
+    
+    // Left column with logo and company name
+    signatureHTML += '<td style="vertical-align: top; padding-right: 15px; border-right: 1px solid #cccccc;">';
+    signatureHTML += '<table cellpadding="0" cellspacing="0" border="0">';
+    signatureHTML += '<tr><td style="padding-bottom: 8px;">';
     signatureHTML += `<img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: block;">`;
-    signatureHTML += '</td>';
-    signatureHTML += '<td style="vertical-align: top;">';
-    if (camp) {
-        signatureHTML += `<div style="font-weight: bold; font-size: 14px; color: #333333;">${camp.name}</div>`;
-    } else {
-        signatureHTML += `<div style="font-weight: bold; font-size: 14px; color: #333333;">Jubilee Monuments Corp.</div>`;
-    }
-    signatureHTML += '</td>';
-    signatureHTML += '</tr>';
-    signatureHTML += '</table>';
     signatureHTML += '</td></tr>';
+    signatureHTML += '<tr><td>';
+    if (camp) {
+        signatureHTML += `<div style="font-size: 12px; color: #666666; text-align: center;">${camp.name}</div>`;
+    } else {
+        signatureHTML += `<div style="font-size: 12px; color: #666666; text-align: center;">Jubilee Monuments Corp.</div>`;
+    }
+    signatureHTML += '</td></tr>';
+    signatureHTML += '</table>';
+    signatureHTML += '</td>';
+    
+    // Right column with contact information
+    signatureHTML += '<td style="vertical-align: top; padding-left: 15px;">';
+    signatureHTML += '<table cellpadding="0" cellspacing="0" border="0">';
     
     // Add personal info
     if (name) {
@@ -291,6 +294,9 @@ function generateHTMLSignature() {
     }
     signatureHTML += '</td></tr>';
     
+    signatureHTML += '</table>';
+    signatureHTML += '</td>';
+    signatureHTML += '</tr>';
     signatureHTML += '</table>';
     
     return signatureHTML;
