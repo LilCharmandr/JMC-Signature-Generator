@@ -133,7 +133,7 @@ function updateSignature() {
     if (camp) {
         signatureContent += `
                     <div class="logo-container">
-                        <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JMC" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
+                        <img src="./JMCLogo.jpeg" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
                     </div>
                     <div class="logo-text">${camp.name}</div>
                     <div class="social-icons">
@@ -153,7 +153,7 @@ function updateSignature() {
     } else {
         signatureContent += `
                     <div class="logo-container">
-                        <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JMC" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
+                        <img src="./JMCLogo.jpeg" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
                     </div>
                     <div class="logo-text">Jubilee Monuments Corp.</div>
                     <div class="social-icons">
@@ -232,12 +232,12 @@ function generateHTMLSignature() {
     // Add logo and company name
     if (camp) {
         signatureHTML += `<div style="margin-bottom: 10px;">
-            <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JMC" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
+            <img src="./JMCLogo.jpeg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
             <span style="font-weight: bold; font-size: 14px; color: #333;">${camp.name}</span>
         </div>`;
     } else {
         signatureHTML += `<div style="margin-bottom: 10px;">
-            <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JMC" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
+            <img src="./JMCLogo.jpeg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
             <span style="font-weight: bold; font-size: 14px; color: #333;">Jubilee Monuments Corp.</span>
         </div>`;
     }
