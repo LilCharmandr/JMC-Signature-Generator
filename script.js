@@ -113,11 +113,11 @@ function updateSignature() {
     const camp = campData[institution];
     const separator = ' | ';
 
-    // Only show signature if institution is selected
-    if (!camp) {
+    // Show signature even without camp selection
+    if (!name && !position && !region && !email && !phone) {
         preview.innerHTML = `
             <div class="signature-placeholder">
-                <p>Please select an Institution/Camp to see your signature preview</p>
+                <p>Fill out the form to see your signature preview</p>
             </div>
         `;
         actions.style.display = 'none';
@@ -128,7 +128,10 @@ function updateSignature() {
     let signatureContent = `
         <div class="signature-content">
             <div class="signature-layout">
-                <div class="signature-left">
+                <div class="signature-left">`;
+    
+    if (camp) {
+        signatureContent += `
                     <div class="logo-container">
                         <img src="${camp.logo}" alt="${camp.name} Logo" style="width: 60px; height: 60px; border-radius: 50%;">
                     </div>
@@ -146,7 +149,30 @@ function updateSignature() {
                         <a href="${camp.social.website}" target="_blank" class="social-icon">
                             <i class="fas fa-globe"></i>
                         </a>
+                    </div>`;
+    } else {
+        signatureContent += `
+                    <div class="logo-container">
+                        <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JMC" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
                     </div>
+                    <div class="logo-text">Jubilee Monuments Corp.</div>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/jmc" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/jmc" target="_blank" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://youtube.com/jmc" target="_blank" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://jmc.org" target="_blank" class="social-icon">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>`;
+    }
+    
+    signatureContent += `
                 </div>
                 <div class="signature-right">
     `;
@@ -157,7 +183,7 @@ function updateSignature() {
     if (position) {
         signatureContent += `<div class="signature-position">${position}</div>`;
     }
-    if (institution) {
+    if (institution && camp) {
         signatureContent += `<div class="signature-institution">${camp.name}</div>`;
     }
     if (region) {
@@ -204,10 +230,17 @@ function generateHTMLSignature() {
     let signatureHTML = '<div style="font-family: Arial, sans-serif; font-size: 12px; color: #333; line-height: 1.4;">';
     
     // Add logo and company name
-    signatureHTML += `<div style="margin-bottom: 10px;">
-        <img src="${camp.logo}" alt="${camp.name}" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
-        <span style="font-weight: bold; font-size: 14px; color: #333;">${camp.name}</span>
-    </div>`;
+    if (camp) {
+        signatureHTML += `<div style="margin-bottom: 10px;">
+            <img src="${camp.logo}" alt="${camp.name}" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
+            <span style="font-weight: bold; font-size: 14px; color: #333;">${camp.name}</span>
+        </div>`;
+    } else {
+        signatureHTML += `<div style="margin-bottom: 10px;">
+            <img src="https://via.placeholder.com/80x80/667eea/ffffff?text=JMC" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 10px;">
+            <span style="font-weight: bold; font-size: 14px; color: #333;">Jubilee Monuments Corp.</span>
+        </div>`;
+    }
     
     // Add personal info
     if (name) {
@@ -216,7 +249,7 @@ function generateHTMLSignature() {
     if (position) {
         signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">${position}</div>`;
     }
-    if (institution) {
+    if (institution && camp) {
         signatureHTML += `<div style="font-size: 12px; color: #666; margin-bottom: 2px;">${camp.name}</div>`;
     }
     if (region) {
@@ -239,20 +272,37 @@ function generateHTMLSignature() {
     }
     
     // Add social media links
-    signatureHTML += `<div style="margin-top: 8px;">
-        <a href="${camp.social.facebook}" target="_blank" style="text-decoration: none; margin-right: 8px;">
-            <span style="color: #1877f2; font-size: 12px;">Facebook</span>
-        </a>
-        <a href="${camp.social.instagram}" target="_blank" style="text-decoration: none; margin-right: 8px;">
-            <span style="color: #e4405f; font-size: 12px;">Instagram</span>
-        </a>
-        <a href="${camp.social.youtube}" target="_blank" style="text-decoration: none; margin-right: 8px;">
-            <span style="color: #ff0000; font-size: 12px;">YouTube</span>
-        </a>
-        <a href="${camp.social.website}" target="_blank" style="text-decoration: none;">
-            <span style="color: #0066cc; font-size: 12px;">Website</span>
-        </a>
-    </div>`;
+    if (camp) {
+        signatureHTML += `<div style="margin-top: 8px;">
+            <a href="${camp.social.facebook}" target="_blank" style="text-decoration: none; margin-right: 8px;">
+                <span style="color: #1877f2; font-size: 12px;">Facebook</span>
+            </a>
+            <a href="${camp.social.instagram}" target="_blank" style="text-decoration: none; margin-right: 8px;">
+                <span style="color: #e4405f; font-size: 12px;">Instagram</span>
+            </a>
+            <a href="${camp.social.youtube}" target="_blank" style="text-decoration: none; margin-right: 8px;">
+                <span style="color: #ff0000; font-size: 12px;">YouTube</span>
+            </a>
+            <a href="${camp.social.website}" target="_blank" style="text-decoration: none;">
+                <span style="color: #0066cc; font-size: 12px;">Website</span>
+            </a>
+        </div>`;
+    } else {
+        signatureHTML += `<div style="margin-top: 8px;">
+            <a href="https://facebook.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;">
+                <span style="color: #1877f2; font-size: 12px;">Facebook</span>
+            </a>
+            <a href="https://instagram.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;">
+                <span style="color: #e4405f; font-size: 12px;">Instagram</span>
+            </a>
+            <a href="https://youtube.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;">
+                <span style="color: #ff0000; font-size: 12px;">YouTube</span>
+            </a>
+            <a href="https://jmc.org" target="_blank" style="text-decoration: none;">
+                <span style="color: #0066cc; font-size: 12px;">Website</span>
+            </a>
+        </div>`;
+    }
     
     signatureHTML += '</div>';
     
