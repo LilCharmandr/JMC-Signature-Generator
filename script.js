@@ -1,7 +1,7 @@
 // Camp data with social media links
 const campData = {
     'JMC': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Jubilee Monuments Corp.',
         social: {
             facebook: 'https://facebook.com/jmc',
@@ -11,7 +11,7 @@ const campData = {
         }
     },
     'Mosaic': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Camp Mosaic',
         social: {
             facebook: 'https://facebook.com/mosaic',
@@ -21,7 +21,7 @@ const campData = {
         }
     },
     'Embark': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Camp Embark',
         social: {
             facebook: 'https://facebook.com/embark',
@@ -31,7 +31,7 @@ const campData = {
         }
     },
     'Al-Ummah': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Camp Al-Ummah',
         social: {
             facebook: 'https://facebook.com/al-ummah',
@@ -41,7 +41,7 @@ const campData = {
         }
     },
     'Vibe': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Camp Vibe',
         social: {
             facebook: 'https://facebook.com/vibe',
@@ -51,7 +51,7 @@ const campData = {
         }
     },
     'Khidma': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Camp Khidma',
         social: {
             facebook: 'https://facebook.com/khidma',
@@ -61,7 +61,7 @@ const campData = {
         }
     },
     'Olympia': {
-        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
+        logo: 'JMCLogo.jpg',
         name: 'Camp Olympia',
         social: {
             facebook: 'https://facebook.com/olympia',
@@ -129,11 +129,21 @@ function updateSignature() {
         textContent.push(`<br style="margin:0;padding:0;"><span style="margin:0;padding:0;line-height:1.2;">${contactParts.join(separator)}</span>`);
     }
 
-    // Social media icons
-    const facebook = "https://effortless-arithmetic-48c93c.netlify.app/fbg.png";
-    const instagram = "https://effortless-arithmetic-48c93c.netlify.app/instag.png";
-    const youtube = "https://effortless-arithmetic-48c93c.netlify.app/ytg.png";
-    const website = "https://effortless-arithmetic-48c93c.netlify.app/siteg.png";
+    // Social media icons - using Font Awesome for reliability
+    const socialIcons = `
+        <a href="${camp.social.facebook}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
+            <span style="color:#1877f2;font-size:14px;font-weight:bold;">f</span>
+        </a>
+        <a href="${camp.social.instagram}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
+            <span style="color:#e4405f;font-size:14px;font-weight:bold;">📷</span>
+        </a>
+        <a href="${camp.social.youtube}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
+            <span style="color:#ff0000;font-size:14px;font-weight:bold;">▶</span>
+        </a>
+        <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
+            <span style="color:#0066cc;font-size:14px;font-weight:bold;">🌐</span>
+        </a>
+    `;
 
     const signatureHTML = `<!--[if mso]>
 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;">
@@ -158,7 +168,8 @@ function updateSignature() {
   <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
     <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
       <img src="${camp.logo}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
-      <span style="margin:0;padding:0;line-height:1.2;"><a href="${camp.social.facebook}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${facebook}" alt="Facebook" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.instagram}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${instagram}" alt="Instagram" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.youtube}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${youtube}" alt="YouTube" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${website}" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a></span>
+      <div style="font-size:12px;color:#666666;text-align:center;margin:0;padding:0;line-height:1.2;">${camp.name}</div>
+      <span style="margin:0;padding:0;line-height:1.2;">${socialIcons}</span>
     </td>
     <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
     <td style="vertical-align:middle;text-align:left;font-family:Georgia,serif;margin:0;padding:0;">
