@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ismaili Council Signature Generator</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* Main page styling */
+body {font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 0;}
+.container {
+  max-width: 540px; margin: 26px auto; background: #fff; border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(50,60,80,0.09); padding: 16px 10px 16px 10px;
+  text-align: left;
+}
+h1 {font-size: 1.5em; margin-bottom: 10px; color: #21243b;}
+label {display: block; margin: 12px 0 2px 0; font-size: 15px;}
+input, select {
+  width: 320px; padding: 5px; font-size: 14px; margin-bottom: 2px;
+  border: 1px solid #ccd6df; border-radius: 5px; font-family: Arial, sans-serif;
+}
+.email-client-instructions {
+  font-size: 14px; background: #f5f6ff; border-radius: 5px;
+  padding: 7px 10px; margin-top: 7px; margin-bottom: 6px;
+  border: 1px solid #e4e8f7; color: #333;
+}
+#universal-instructions {
+  font-size: 13px; background: #fffde3; border-radius: 5px;
+  padding: 7px 11px; margin-bottom: 7px;
+  border: 1px solid #ffe1a3; color: #604000;
+}
+#signature-preview {
+  margin-top: 7px; padding: 9px; border: 1px solid #ddd; background-color: #fafafb;
+  border-radius: 7px; min-width: 320px; display: inline-block;
+}
+.advanced-html-label {font-size: 12px; color: #555; margin-top: 14px; margin-bottom: 2px; font-weight: bold;}
+.outlook-notice {
+  font-size: 12px; background: #fff3cd; border: 1px solid #ffeaa7; 
+  padding: 8px; margin-top: 8px; border-radius: 5px; color: #856404;
+}
+</style>
+</head>
+<body>
+<div id="mainContent" style="text-align: center;">
+<div class="container">
+  <h1>Ismaili Council Signature Generator</h1>
+  <div id="universal-instructions">
+    <b>Instructions:</b><br>
+    Follow these steps to generate and apply your signature:<br>
+    1. Complete the sections below (Steps 1-4). The signature preview updates automatically.<br>
+    2. In Step 5, click <b>Copy Signature</b>, then paste it into your email client's signature settings.<br>
+    3. If copying doesn't work, highlight the signature preview with your mouse, right-click and select <b>Copy</b>, then paste as above.
+  </div>
+  <label><b>Step 1: Choose your email client</b>
+    <select id="emailclient" onchange="updateInstructions()">
+      <option value="Gmail">Gmail</option>
+      <option value="Outlook">Outlook</option>
+      <option value="Apple Mail">Apple Mail</option>
+      <option value="Other">Other Email Clients</option>
+    </select>
+  </label>
+  <div id="instructions" class="email-client-instructions"></div>
+  <div id="outlook-notice" class="outlook-notice" style="display: none;">
+    <b>Outlook Users:</b> This signature has been optimized to reduce extra spacing in Outlook. If you still see spacing issues, try pasting as "Keep Source Formatting" or use the raw HTML code below.
+  </div>
+
+  <label><b>Step 2: Enter your personal information</b></label>
+  <label>Full Name:
+    <input type="text" id="name" placeholder="Your Name" oninput="updateSignature()" />
+  </label>
+  <label>Role or Position:
+    <input type="text" id="title" placeholder="Your Role (Optional)" oninput="updateSignature()" />
+  </label>
+  <label><b>Step 3: Select your Board/Portfolio and Jurisdiction</b></label>
+  <label>Board or Portfolio:
+    <select id="team" onchange="updateSignature()">
+      <option value="">--Select Board or Portfolio--</option>
+      <option value="Arts & Culture Portfolio">Arts & Culture Portfolio</option>
+      <option value="Capacity Development & TKN">Capacity Development & TKN</option>
+      <option value="Communications & Outreach">Communications & Outreach</option>
+      <option value="Community Engagement">Community Engagement</option>
+      <option value="Conciliation & Arbitration Board">Conciliation & Arbitration Board</option>
+      <option value="Economic Planning Board">Economic Planning Board</option>
+      <option value="Education Board">Education Board</option>
+      <option value="Grants & Review Board">Grants & Review Board</option>
+      <option value="Health Board">Health Board</option>
+      <option value="Institutional Communications">Institutional Communications</option>
+      <option value="Ismaili Tariqah & Religious Education Board">Ismaili Tariqah & Religious Education Board</option>
+      <option value="Ismaili Volunteers & Security">Ismaili Volunteers & Security</option>
+      <option value="Legal Matters Portfolio">Legal Matters Portfolio</option>
+      <option value="Lifelong Learning, ACCESS, & SDI">Lifelong Learning, ACCESS, & SDI</option>
+      <option value="Performance Management">Performance Management</option>
+      <option value="Property Management">Property Management</option>
+      <option value="Settlement & Quality Neighborhoods">Settlement & Quality Neighborhoods</option>
+      <option value="Social Welfare Board">Social Welfare Board</option>
+      <option value="Youth & Sports Board">Youth & Sports Board</option>
+    </select>
+  </label>
+  <label>Jurisdiction:
+    <select id="jurisdiction" onchange="updateSignature()">
+      <option value="">--Select Jurisdiction--</option>
+      <option value="United States of America">United States of America</option>
+      <option value="Southwestern USA">Southwestern USA</option>
+      <option value="Central USA">Central USA</option>
+      <option value="Florida">Florida</option>
+      <option value="Midwestern USA">Midwestern USA</option>
+      <option value="Southeastern USA">Southeastern USA</option>
+      <option value="Western USA">Western USA</option>
+      <option value="Northeastern USA">Northeastern USA</option>
+    </select>
+  </label>
+  <label><b>Step 4: Enter your contact details</b></label>
+  <label>Email:
+    <input type="email" id="email" placeholder="your@email.com" oninput="updateSignature()" />
+  </label>
+  <label>Phone Number:
+    <input type="text" id="phone" placeholder="(###) ###-####" oninput="maskPhone(this);updateSignature();" maxlength="14" />
+  </label>
+  <label><b>Step 5: Preview and copy your signature</b></label>
+  <div id="signature-preview"></div>
+<div style="margin-top:8px;margin-bottom:6px;">
+  <button id="copyBtn" onclick="copySignaturePreview()" style="font-size: 14px; padding: 7px 13px; background: #3c50a1; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Copy Signature</button>
+  <span id="copy-result" style="margin-left:9px;color:#288504;font-weight:bold;"></span>
+</div>
+  <div class="advanced-html-label">Advanced use only: Raw HTML code to copy for email clients asking for HTML signature input.</div>
+  <textarea id="signature-html" style="width: 100%; height: 90px; margin-top:3px;" readonly></textarea>
+</div>
+</div>
+<script>
+function maskPhone(input) {
+  var numbers = input.value.replace(/\D/g, '');
+  var formatted = '';
+  if (numbers.length > 0) { formatted = '(' + numbers.substring(0, 3); }
+  if (numbers.length >= 4) { formatted += ') ' + numbers.substring(3, 6); }
+  if (numbers.length >= 7) { formatted += '-' + numbers.substring(6, 10); }
+  input.value = formatted;
+}
+function updateSignature() {
+  var name = document.getElementById('name').value || "";
+  var title = document.getElementById('title').value || "";
+  var email = document.getElementById('email').value || "";
+  var phone = document.getElementById('phone').value || "";
+  var team = document.getElementById('team').value || "";
+  var jurisdiction = document.getElementById('jurisdiction').value || "";
+  
+  const specialBoards = ["Conciliation & Arbitration Board", "Grants & Review Board", "Ismaili Tariqah & Religious Education Board"];
+  var logo = specialBoards.includes(team) ? "https://effortless-arithmetic-48c93c.netlify.app/ti.png" : "https://effortless-arithmetic-48c93c.netlify.app/ichigh.png";
+  
+  const separator = ' <span style="color:#bbb;font-family:Georgia,serif;font-size:11px;margin:0;padding:0;line-height:1;">|</span> ';
+  
+  var councilJurisdictionLineContent = '';
+  if (specialBoards.includes(team)) {
+    councilJurisdictionLineContent = `${jurisdiction || ""}`;
+  } else {
+    councilJurisdictionLineContent = `Ismaili Council${jurisdiction ? separator + jurisdiction : ""}`;
+  }
+  
+  var facebook = "https://effortless-arithmetic-48c93c.netlify.app/fbg.png";
+  var instagram = "https://effortless-arithmetic-48c93c.netlify.app/instag.png";
+  var youtube = "https://effortless-arithmetic-48c93c.netlify.app/ytg.png";
+  var website = "https://effortless-arithmetic-48c93c.netlify.app/siteg.png";
+  
+  // Build text content with proper line breaks
+  var textContent = [];
+  if (name) textContent.push(`<span style="font-size:13px;font-weight:bold;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${name}</span>`);
+  if (title) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${title}</span>`);
+  if (team) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${team}</span>`);
+  if (councilJurisdictionLineContent) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${councilJurisdictionLineContent}</span>`);
+  
+  // Contact line
+  var contactParts = [];
+  if (email) contactParts.push(`<a href="mailto:${email}" style="color:#0366d6;text-decoration:underline;font-size:11px;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${email}</a>`);
+  if (phone) contactParts.push(`<span style="color:#222;font-size:11px;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${phone}</span>`);
+  if (contactParts.length > 0) {
+    textContent.push(`<br><span style="margin:0;padding:0;line-height:1.2;">${contactParts.join(separator)}</span>`);
+  }
+  
+  var signatureHTML = `<!--[if mso]>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;">
+<tr>
+<td style="padding:0;margin:0;">
+<![endif]-->
+<style type="text/css">
+/* Apple Mail specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  table[role="presentation"] {
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+  }
+  table[role="presentation"] td {
+    display: table-cell !important;
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+}
+</style>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="font-family:Georgia,serif;font-size:11px;color:#222;border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;line-height:1;background:transparent;background-color:transparent;">
+  <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
+    <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
+      <img src="${logo}" alt="Ismaili Council Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
+      <span style="margin:0;padding:0;line-height:1.2;"><a href="http://facebook.com/theismailiusa" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${facebook}" alt="Facebook" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="https://www.instagram.com/theismailiusa/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${instagram}" alt="Instagram" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="http://www.youtube.com/@TheIsmailiUSA" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${youtube}" alt="YouTube" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="http://the.ismaili/us" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${website}" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a></span>
+    </td>
+    <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
+    <td style="vertical-align:middle;text-align:left;font-family:Georgia,serif;margin:0;padding:0;">
+      <div style="font-family:Georgia,serif;font-size:11px;line-height:1.2;margin:0;padding:0;">
+        ${textContent.join('<br style="margin:0;padding:0;">')}
+      </div>
+    </td>
+  </tr>
+</table>
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->`;
+
+  document.getElementById('signature-preview').innerHTML = signatureHTML;
+  document.getElementById('signature-html').value = signatureHTML;
+}
+
+function copySignaturePreview() {
+  var preview = document.getElementById("signature-preview");
+  var range = document.createRange();
+  range.selectNodeContents(preview);
+  var sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  try {
+    var successful = document.execCommand('copy');
+    document.getElementById('copy-result').innerText = successful ? "Copied!" : "Copy failed";
+  } catch (err) {
+    document.getElementById('copy-result').innerText = "Copy failed";
+  }
+  sel.removeAllRanges();
+  setTimeout(function(){document.getElementById('copy-result').innerText="";},1600);
+}
+
+function updateInstructions() {
+  var client = document.getElementById('emailclient').value;
+  var inst = "";
+  var outlookNotice = document.getElementById('outlook-notice');
+  
+  if (client === "Gmail") { 
+    inst = "<b>Gmail:</b> Copy the signature below, go to <b>Settings → See all settings → Signature</b>, and paste it."; 
+    outlookNotice.style.display = 'none';
+  }
+  else if (client === "Outlook") { 
+    inst = "<b>Outlook:</b> Copy the signature below, go to <b>File → Options → Mail → Signatures</b>, and paste it. For best results, paste as 'Keep Source Formatting'."; 
+    outlookNotice.style.display = 'block';
+  }
+  else if (client === "Apple Mail") { 
+  inst = "<b>Apple Mail:</b> Copy the signature below, open <b>Preferences → Signatures</b>, and paste it.<br><br><b>Setup tip:</b> <b>Chrome browser</b> works most reliably for copying. <b>Important:</b> Uncheck 'Always match my default message font' before pasting.<br><br><b>Don't worry if images appear as empty boxes</b> in the signature preview - they will display correctly when you compose emails.<br><br>After pasting the signature in the settings box, <b>if your signature layout looks wrong</b> (vertically stacked instead of side-by-side), immediately press <b>Cmd+Z (undo)</b> in the signature settings box. This fixes Apple Mail's auto-formatting and restores the correct layout."; 
+  outlookNotice.style.display = 'none';
+}
+  else if (client === "Other") { 
+    inst = "<b>Other Email Clients:</b> Copy the signature below using the <b>Copy Signature</b> button, then paste it into your email client's signature settings. Most email clients have signature options in <b>Settings</b> or <b>Preferences</b>."; 
+    outlookNotice.style.display = 'none';
+  }
+  document.getElementById('instructions').innerHTML = inst;
+}
+
+window.onload = function() {
+    updateSignature();
+    updateInstructions();
+};
+document.getElementById('emailclient').onchange = updateInstructions;
+</script>
+</body>
+</html>

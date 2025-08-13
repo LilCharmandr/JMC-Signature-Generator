@@ -1,7 +1,7 @@
 // Camp data with social media links
 const campData = {
     'JMC': {
-        logo: 'https://via.placeholder.com/80x80/667eea/ffffff?text=JMC',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Jubilee Monuments Corp.',
         social: {
             facebook: 'https://facebook.com/jmc',
@@ -11,7 +11,7 @@ const campData = {
         }
     },
     'Mosaic': {
-        logo: 'https://via.placeholder.com/80x80/8b5cf6/ffffff?text=Mosaic',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Camp Mosaic',
         social: {
             facebook: 'https://facebook.com/mosaic',
@@ -21,7 +21,7 @@ const campData = {
         }
     },
     'Embark': {
-        logo: 'https://via.placeholder.com/80x80/06b6d4/ffffff?text=Embark',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Camp Embark',
         social: {
             facebook: 'https://facebook.com/embark',
@@ -31,7 +31,7 @@ const campData = {
         }
     },
     'Al-Ummah': {
-        logo: 'https://via.placeholder.com/80x80/059669/ffffff?text=Al-Ummah',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Camp Al-Ummah',
         social: {
             facebook: 'https://facebook.com/al-ummah',
@@ -41,7 +41,7 @@ const campData = {
         }
     },
     'Vibe': {
-        logo: 'https://via.placeholder.com/80x80/f59e0b/ffffff?text=Vibe',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Camp Vibe',
         social: {
             facebook: 'https://facebook.com/vibe',
@@ -51,7 +51,7 @@ const campData = {
         }
     },
     'Khidma': {
-        logo: 'https://via.placeholder.com/80x80/dc2626/ffffff?text=Khidma',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Camp Khidma',
         social: {
             facebook: 'https://facebook.com/khidma',
@@ -61,7 +61,7 @@ const campData = {
         }
     },
     'Olympia': {
-        logo: 'https://via.placeholder.com/80x80/7c3aed/ffffff?text=Olympia',
+        logo: 'https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg',
         name: 'Camp Olympia',
         social: {
             facebook: 'https://facebook.com/olympia',
@@ -107,323 +107,120 @@ function updateSignature() {
             </div>
         `;
         actions.style.display = 'none';
+        document.getElementById('signature-html').value = '';
         return;
     }
 
-    const camp = campData[institution];
-    const separator = ' | ';
+    const camp = campData[institution] || campData['JMC'];
+    const separator = ' <span style="color:#bbb;font-family:Georgia,serif;font-size:11px;margin:0;padding:0;line-height:1;">|</span> ';
 
-    // Show signature even without camp selection
-    if (!name && !position && !region && !email && !phone) {
-        preview.innerHTML = `
-            <div class="signature-placeholder">
-                <p>Fill out the form to see your signature preview</p>
-            </div>
-        `;
-        actions.style.display = 'none';
-        return;
-    }
+    // Build text content with proper line breaks
+    const textContent = [];
+    if (name) textContent.push(`<span style="font-size:13px;font-weight:bold;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${name}</span>`);
+    if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
+    if (institution && camp) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${camp.name}</span>`);
+    if (region) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">Jubilee Monuments Corp.${separator}${region}</span>`);
 
-    // Build signature content
-    let signatureContent = `
-        <div class="signature-content">
-            <div class="signature-layout">
-                <div class="signature-left">`;
-    
-    if (camp) {
-        signatureContent += `
-                    <div class="logo-container">
-                        <img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
-                    </div>
-                    <div class="logo-text">${camp.name}</div>
-                    <div class="social-icons">
-                        <a href="${camp.social.facebook}" target="_blank" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="${camp.social.instagram}" target="_blank" class="social-icon">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="${camp.social.youtube}" target="_blank" class="social-icon">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="${camp.social.website}" target="_blank" class="social-icon">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                    </div>`;
-    } else {
-        signatureContent += `
-                    <div class="logo-container">
-                        <img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC Logo" style="width: 60px; height: 60px; border-radius: 50%;">
-                    </div>
-                    <div class="logo-text">Jubilee Monuments Corp.</div>
-                    <div class="social-icons">
-                        <a href="https://facebook.com/jmc" target="_blank" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://instagram.com/jmc" target="_blank" class="social-icon">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://youtube.com/jmc" target="_blank" class="social-icon">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://jmc.org" target="_blank" class="social-icon">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                    </div>`;
-    }
-    
-    signatureContent += `
-                </div>
-                <div class="signature-right">
-    `;
-
-    if (name) {
-        signatureContent += `<div class="signature-name">${name}</div>`;
-    }
-    if (position) {
-        signatureContent += `<div class="signature-position">${position}</div>`;
-    }
-    if (institution && camp) {
-        signatureContent += `<div class="signature-institution">${camp.name}</div>`;
-    }
-    if (region) {
-        const regionText = `Jubilee Monuments Corp. ${separator} ${region}`;
-        signatureContent += `<div class="signature-region">${regionText}</div>`;
-    }
-    if (email || phone) {
-        signatureContent += `<div class="signature-contact">`;
-        if (email) {
-            signatureContent += `<a href="mailto:${email}">${email}</a>`;
-        }
-        if (email && phone) {
-            signatureContent += ` ${separator} `;
-        }
-        if (phone) {
-            signatureContent += phone;
-        }
-        signatureContent += `</div>`;
+    // Contact line
+    const contactParts = [];
+    if (email) contactParts.push(`<a href="mailto:${email}" style="color:#0366d6;text-decoration:underline;font-size:11px;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${email}</a>`);
+    if (phone) contactParts.push(`<span style="color:#222;font-size:11px;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${phone}</span>`);
+    if (contactParts.length > 0) {
+        textContent.push(`<br style="margin:0;padding:0;"><span style="margin:0;padding:0;line-height:1.2;">${contactParts.join(separator)}</span>`);
     }
 
-    signatureContent += `
-                </div>
-            </div>
-        </div>
-    `;
+    // Social media icons
+    const facebook = "https://effortless-arithmetic-48c93c.netlify.app/fbg.png";
+    const instagram = "https://effortless-arithmetic-48c93c.netlify.app/instag.png";
+    const youtube = "https://effortless-arithmetic-48c93c.netlify.app/ytg.png";
+    const website = "https://effortless-arithmetic-48c93c.netlify.app/siteg.png";
 
-    preview.innerHTML = signatureContent;
+    const signatureHTML = `<!--[if mso]>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;">
+<tr>
+<td style="padding:0;margin:0;">
+<![endif]-->
+<style type="text/css">
+/* Apple Mail specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  table[role="presentation"] {
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+  }
+  table[role="presentation"] td {
+    display: table-cell !important;
+    background-color: transparent !important;
+    background: transparent !important;
+  }
+}
+</style>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="font-family:Georgia,serif;font-size:11px;color:#222;border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;line-height:1;background:transparent;background-color:transparent;">
+  <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
+    <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
+      <img src="${camp.logo}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
+      <span style="margin:0;padding:0;line-height:1.2;"><a href="${camp.social.facebook}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${facebook}" alt="Facebook" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.instagram}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${instagram}" alt="Instagram" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.youtube}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${youtube}" alt="YouTube" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${website}" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a></span>
+    </td>
+    <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
+    <td style="vertical-align:middle;text-align:left;font-family:Georgia,serif;margin:0;padding:0;">
+      <div style="font-family:Georgia,serif;font-size:11px;line-height:1.2;margin:0;padding:0;">
+        ${textContent.join('<br style="margin:0;padding:0;">')}
+      </div>
+    </td>
+  </tr>
+</table>
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->`;
+
+    preview.innerHTML = signatureHTML;
+    document.getElementById('signature-html').value = signatureHTML;
     actions.style.display = 'block';
 }
 
-// Generate HTML signature for email clients
-function generateHTMLSignature() {
-    const name = document.getElementById('name').value || '';
-    const position = document.getElementById('position').value || '';
-    const institution = document.getElementById('institution').value || '';
-    const region = document.getElementById('region').value || '';
-    const email = document.getElementById('email').value || '';
-    const phone = document.getElementById('phone').value || '';
-
-    const camp = campData[institution];
-    const separator = ' | ';
-
-    // Build signature content for Gmail compatibility with vertical divider
-    let signatureHTML = '<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #333333; line-height: 1.4;">';
-    signatureHTML += '<tr>';
-    
-    // Left column with logo and company name
-    signatureHTML += '<td style="vertical-align: top; padding-right: 15px; border-right: 1px solid #cccccc;">';
-    signatureHTML += '<table cellpadding="0" cellspacing="0" border="0">';
-    signatureHTML += '<tr><td style="padding-bottom: 8px;">';
-    signatureHTML += `<img src="https://raw.githubusercontent.com/LilCharmandr/JMC-Signature-Generator/main/JMCLogo.jpg" alt="JMC" style="width: 60px; height: 60px; border-radius: 50%; display: block;">`;
-    signatureHTML += '</td></tr>';
-    signatureHTML += '<tr><td>';
-    if (camp) {
-        signatureHTML += `<div style="font-size: 12px; color: #666666; text-align: center;">${camp.name}</div>`;
-    } else {
-        signatureHTML += `<div style="font-size: 12px; color: #666666; text-align: center;">Jubilee Monuments Corp.</div>`;
-    }
-    signatureHTML += '</td></tr>';
-    signatureHTML += '</table>';
-    signatureHTML += '</td>';
-    
-    // Right column with contact information
-    signatureHTML += '<td style="vertical-align: top; padding-left: 15px;">';
-    signatureHTML += '<table cellpadding="0" cellspacing="0" border="0">';
-    
-    // Add personal info
-    if (name) {
-        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-weight: bold; font-size: 14px; color: #333333;">${name}</div></td></tr>`;
-    }
-    if (position) {
-        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-size: 12px; color: #666666;">${position}</div></td></tr>`;
-    }
-    if (institution && camp) {
-        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-size: 12px; color: #666666;">${camp.name}</div></td></tr>`;
-    }
-    if (region) {
-        signatureHTML += `<tr><td style="padding-bottom: 2px;"><div style="font-size: 12px; color: #666666;">Jubilee Monuments Corp. ${separator} ${region}</div></td></tr>`;
-    }
-    
-    // Add contact info
-    if (email || phone) {
-        signatureHTML += '<tr><td style="padding-top: 8px; padding-bottom: 8px;">';
-        if (email) {
-            signatureHTML += `<a href="mailto:${email}" style="color: #0066cc; text-decoration: none; font-size: 12px;">${email}</a>`;
-        }
-        if (email && phone) {
-            signatureHTML += ` ${separator} `;
-        }
-        if (phone) {
-            signatureHTML += `<span style="font-size: 12px; color: #333333;">${phone}</span>`;
-        }
-        signatureHTML += '</td></tr>';
-    }
-    
-    // Add social media links
-    signatureHTML += '<tr><td style="padding-top: 8px;">';
-    if (camp) {
-        signatureHTML += `<a href="${camp.social.facebook}" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #1877f2; font-size: 12px;">Facebook</span></a>`;
-        signatureHTML += `<a href="${camp.social.instagram}" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #e4405f; font-size: 12px;">Instagram</span></a>`;
-        signatureHTML += `<a href="${camp.social.youtube}" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #ff0000; font-size: 12px;">YouTube</span></a>`;
-        signatureHTML += `<a href="${camp.social.website}" target="_blank" style="text-decoration: none;"><span style="color: #0066cc; font-size: 12px;">Website</span></a>`;
-    } else {
-        signatureHTML += `<a href="https://facebook.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #1877f2; font-size: 12px;">Facebook</span></a>`;
-        signatureHTML += `<a href="https://instagram.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #e4405f; font-size: 12px;">Instagram</span></a>`;
-        signatureHTML += `<a href="https://youtube.com/jmc" target="_blank" style="text-decoration: none; margin-right: 8px;"><span style="color: #ff0000; font-size: 12px;">YouTube</span></a>`;
-        signatureHTML += `<a href="https://jmc.org" target="_blank" style="text-decoration: none;"><span style="color: #0066cc; font-size: 12px;">Website</span></a>`;
-    }
-    signatureHTML += '</td></tr>';
-    
-    signatureHTML += '</table>';
-    signatureHTML += '</td>';
-    signatureHTML += '</tr>';
-    signatureHTML += '</table>';
-    
-    return signatureHTML;
-}
-
-// Copy signature to clipboard
-function copySignature() {
-    const htmlSignature = generateHTMLSignature();
-    
-    // Try to use the modern clipboard API first
-    if (navigator.clipboard && window.ClipboardItem) {
-        const blob = new Blob([htmlSignature], { type: 'text/html' });
-        const clipboardItem = new ClipboardItem({ 'text/html': blob });
-        
-        navigator.clipboard.write([clipboardItem]).then(() => {
-            showNotification('Signature copied to clipboard!', 'success');
-        }).catch(() => {
-            // Fallback to the old method
-            fallbackCopy(htmlSignature);
-        });
-    } else {
-        // Fallback for older browsers
-        fallbackCopy(htmlSignature);
-    }
-}
-
-// Fallback copy method
-function fallbackCopy(htmlSignature) {
-    // Create a temporary div to hold the HTML
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = htmlSignature;
-    tempDiv.style.position = 'absolute';
-    tempDiv.style.left = '-9999px';
-    document.body.appendChild(tempDiv);
-    
-    // Select the content
+// Copy signature to clipboard (improved method from reference)
+function copySignaturePreview() {
+    const preview = document.getElementById("signaturePreview");
     const range = document.createRange();
-    range.selectNodeContents(tempDiv);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    
+    range.selectNodeContents(preview);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
     try {
-        document.execCommand('copy');
-        showNotification('Signature copied to clipboard!', 'success');
+        const successful = document.execCommand('copy');
+        document.getElementById('copy-result').innerText = successful ? "Copied!" : "Copy failed";
     } catch (err) {
-        showNotification('Copy failed. Please try selecting and copying manually.', 'error');
+        document.getElementById('copy-result').innerText = "Copy failed";
     }
-    
-    // Clean up
-    document.body.removeChild(tempDiv);
-    selection.removeAllRanges();
+    sel.removeAllRanges();
+    setTimeout(function(){document.getElementById('copy-result').innerText="";},1600);
 }
 
-// Download signature as image
-function downloadSignature() {
-    const preview = document.getElementById('signaturePreview');
+// Update email client instructions
+function updateInstructions() {
+    const client = document.getElementById('emailclient').value;
+    let inst = "";
+    const outlookNotice = document.getElementById('outlook-notice');
     
-    // Use html2canvas if available, otherwise show instructions
-    if (typeof html2canvas !== 'undefined') {
-        html2canvas(preview).then(canvas => {
-            const link = document.createElement('a');
-            link.download = 'jmc-signature.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    } else {
-        showNotification('Image download requires html2canvas library. Please copy the signature instead.', 'info');
+    if (client === "Gmail") { 
+        inst = "<b>Gmail:</b> Copy the signature below, go to <b>Settings → See all settings → Signature</b>, and paste it."; 
+        outlookNotice.style.display = 'none';
     }
+    else if (client === "Outlook") { 
+        inst = "<b>Outlook:</b> Copy the signature below, go to <b>File → Options → Mail → Signatures</b>, and paste it. For best results, paste as 'Keep Source Formatting'."; 
+        outlookNotice.style.display = 'block';
+    }
+    else if (client === "Apple Mail") { 
+        inst = "<b>Apple Mail:</b> Copy the signature below, open <b>Preferences → Signatures</b>, and paste it.<br><br><b>Setup tip:</b> <b>Chrome browser</b> works most reliably for copying. <b>Important:</b> Uncheck 'Always match my default message font' before pasting.<br><br><b>Don't worry if images appear as empty boxes</b> in the signature preview - they will display correctly when you compose emails.<br><br>After pasting the signature in the settings box, <b>if your signature layout looks wrong</b> (vertically stacked instead of side-by-side), immediately press <b>Cmd+Z (undo)</b> in the signature settings box. This fixes Apple Mail's auto-formatting and restores the correct layout."; 
+        outlookNotice.style.display = 'none';
+    }
+    else if (client === "Other") { 
+        inst = "<b>Other Email Clients:</b> Copy the signature below using the <b>Copy Signature</b> button, then paste it into your email client's signature settings. Most email clients have signature options in <b>Settings</b> or <b>Preferences</b>."; 
+        outlookNotice.style.display = 'none';
+    }
+    document.getElementById('instructions').innerHTML = inst;
 }
-
-// Show notification
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        border-radius: 6px;
-        color: white;
-        font-weight: 500;
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    // Set background color based on type
-    switch(type) {
-        case 'success':
-            notification.style.backgroundColor = '#059669';
-            break;
-        case 'error':
-            notification.style.backgroundColor = '#dc2626';
-            break;
-        default:
-            notification.style.backgroundColor = '#667eea';
-    }
-    
-    document.body.appendChild(notification);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 3000);
-}
-
-// Add CSS animations for notifications
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
@@ -444,27 +241,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form submission
-    const form = document.getElementById('signatureForm');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            updateSignature();
-        });
-    }
-
     // Copy signature button
     const copyBtn = document.getElementById('copySignature');
     if (copyBtn) {
-        copyBtn.addEventListener('click', copySignature);
+        copyBtn.addEventListener('click', copySignaturePreview);
     }
 
-    // Download signature button
-    const downloadBtn = document.getElementById('downloadSignature');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', downloadSignature);
-    }
-
-    // Initial signature update
+    // Initial signature update and instructions
     updateSignature();
+    updateInstructions();
 }); 

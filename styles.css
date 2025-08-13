@@ -259,6 +259,48 @@ input:focus, select:focus {
     text-align: center;
 }
 
+/* Email client instructions styling */
+.email-client-instructions {
+    font-size: 14px;
+    background: #f5f6ff;
+    border-radius: 5px;
+    padding: 7px 10px;
+    margin-top: 7px;
+    margin-bottom: 6px;
+    border: 1px solid #e4e8f7;
+    color: #333;
+}
+
+.outlook-notice {
+    font-size: 12px;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 5px;
+    color: #856404;
+}
+
+.advanced-html-label {
+    font-size: 12px;
+    color: #555;
+    margin-top: 14px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+#signature-html {
+    font-family: monospace;
+    font-size: 11px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+#copy-result {
+    font-size: 14px;
+}
+
 @media (max-width: 768px) {
     .main-content {
         grid-template-columns: 1fr;
