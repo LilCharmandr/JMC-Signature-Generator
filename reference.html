@@ -131,8 +131,10 @@ let config = null;
 
 async function loadConfig() {
   try {
-    const response = await fetch('config.json');
+    // Add cache-busting parameter to prevent browser caching
+    const response = await fetch('config.json?v=' + Date.now());
     config = await response.json();
+    console.log('Config loaded successfully:', config);
   } catch (error) {
     console.error('Failed to load config:', error);
     // Fallback to hardcoded values
@@ -159,6 +161,7 @@ async function loadConfig() {
         "Ismaili Tariqah & Religious Education Board"
       ]
     };
+    console.log('Using fallback config:', config);
   }
 }
 
@@ -171,7 +174,11 @@ function maskPhone(input) {
   input.value = formatted;
 }
 function updateSignature() {
-  if (!config) return; // Wait for config to load
+  if (!config) {
+    console.log('Config not loaded yet, skipping signature update');
+    return; // Wait for config to load
+  }
+  console.log('Updating signature with config:', config);
   
   var name = document.getElementById('name').value || "";
   var title = document.getElementById('title').value || "";
@@ -229,7 +236,7 @@ function updateSignature() {
   <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
     <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
       <img src="${logo}" alt="Ismaili Council Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
-      <span style="margin:0;padding:0;line-height:1.2;"><a href="${config.socialMedia.linkedin.url}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${config.socialMedia.linkedin.icon}" alt="${config.socialMedia.linkedin.alt}" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${config.socialMedia.website.url}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${config.socialMedia.website.icon}" alt="${config.socialMedia.website.alt}" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a></span>
+      <span style="margin:0;padding:0;line-height:1.2;"><a href="${config.socialMedia.linkedin.url}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${config.socialMedia.linkedin.icon}?v=${Date.now()}" alt="${config.socialMedia.linkedin.alt}" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a>&nbsp;<a href="${config.socialMedia.website.url}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;"><img src="${config.socialMedia.website.icon}?v=${Date.now()}" alt="${config.socialMedia.website.alt}" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;"></a></span>
     </td>
     <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
     <td style="vertical-align:middle;text-align:left;font-family:Georgia,serif;margin:0;padding:0;">
@@ -294,6 +301,11 @@ window.onload = async function() {
     await loadConfig();
     updateSignature();
     updateInstructions();
+    
+    // Force refresh after a short delay to ensure everything loads
+    setTimeout(() => {
+        updateSignature();
+    }, 100);
 };
 document.getElementById('emailclient').onchange = updateInstructions;
 </script>
