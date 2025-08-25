@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #019a64;
     min-height: 100vh;
     color: #333;
 }
@@ -86,12 +86,12 @@ input, select {
 
 input:focus, select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #019a64;
+    box-shadow: 0 0 0 3px rgba(1, 154, 100, 0.1);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #019a64;
     color: white;
     border: none;
     padding: 14px 28px;
@@ -105,7 +105,8 @@ input:focus, select:focus {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px rgba(1, 154, 100, 0.3);
+    background: #018a5a;
 }
 
 .btn-secondary {
@@ -205,7 +206,7 @@ input:focus, select:focus {
 }
 
 .social-icon:hover {
-    background: #667eea;
+    background: #019a64;
     color: white;
 }
 
@@ -246,7 +247,7 @@ input:focus, select:focus {
 }
 
 .signature-contact a {
-    color: #667eea;
+    color: #019a64;
     text-decoration: none;
 }
 
