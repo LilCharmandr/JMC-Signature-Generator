@@ -1,0 +1,27 @@
+{
+  "socialMedia": {
+    "linkedin": {
+      "url": "https://www.linkedin.com/company/jubileemonumentscorp",
+      "icon": "https://effortless-arithmetic-48c93c.netlify.app/fbg.png",
+      "alt": "LinkedIn"
+    },
+    "website": {
+      "url": "https://the.ismaili/camps",
+      "icon": "https://effortless-arithmetic-48c93c.netlify.app/siteg.png",
+      "alt": "Website"
+    }
+  },
+  "logos": {
+    "default": "https://effortless-arithmetic-48c93c.netlify.app/ichigh.png",
+    "special": "https://effortless-arithmetic-48c93c.netlify.app/ti.png"
+  },
+  "specialBoards": [
+    "Conciliation & Arbitration Board",
+    "Grants & Review Board", 
+    "Ismaili Tariqah & Religious Education Board"
+  ],
+  "appInfo": {
+    "title": "Ismaili Council Signature Generator",
+    "version": "1.0"
+  }
+}
