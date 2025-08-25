@@ -1,73 +1,88 @@
+// Configuration loading
+let config = null;
+
+async function loadConfig() {
+    try {
+        const response = await fetch('config.json?v=' + Date.now());
+        config = await response.json();
+        console.log('Config loaded successfully:', config);
+    } catch (error) {
+        console.error('Failed to load config:', error);
+        // Fallback to hardcoded values
+        config = {
+            socialMedia: {
+                linkedin: {
+                    url: "https://www.linkedin.com/company/jubileemonumentscorp",
+                    icon: "https://effortless-arithmetic-48c93c.netlify.app/linkedin.png",
+                    alt: "LinkedIn"
+                },
+                website: {
+                    url: "https://the.ismaili/camps",
+                    icon: "https://effortless-arithmetic-48c93c.netlify.app/siteg.png",
+                    alt: "Website"
+                }
+            }
+        };
+        console.log('Using fallback config:', config);
+    }
+}
+
 // Camp data with social media links
 const campData = {
     'JMC': {
         logo: 'JMCLogo.jpg',
         name: 'Jubilee Monuments Corp.',
         social: {
-            facebook: 'https://facebook.com/jmc',
-            instagram: 'https://instagram.com/jmc',
-            youtube: 'https://youtube.com/jmc',
-            website: 'https://jmc.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     },
     'Mosaic': {
         logo: 'JMCLogo.jpg',
         name: 'Camp Mosaic',
         social: {
-            facebook: 'https://facebook.com/mosaic',
-            instagram: 'https://instagram.com/mosaic',
-            youtube: 'https://youtube.com/mosaic',
-            website: 'https://mosaic.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     },
     'Embark': {
         logo: 'JMCLogo.jpg',
         name: 'Camp Embark',
         social: {
-            facebook: 'https://facebook.com/embark',
-            instagram: 'https://instagram.com/embark',
-            youtube: 'https://youtube.com/embark',
-            website: 'https://embark.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     },
     'Al-Ummah': {
         logo: 'JMCLogo.jpg',
         name: 'Camp Al-Ummah',
         social: {
-            facebook: 'https://facebook.com/al-ummah',
-            instagram: 'https://instagram.com/al-ummah',
-            youtube: 'https://youtube.com/al-ummah',
-            website: 'https://al-ummah.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     },
     'Vibe': {
         logo: 'JMCLogo.jpg',
         name: 'Camp Vibe',
         social: {
-            facebook: 'https://facebook.com/vibe',
-            instagram: 'https://instagram.com/vibe',
-            youtube: 'https://youtube.com/vibe',
-            website: 'https://vibe.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     },
     'Khidma': {
         logo: 'JMCLogo.jpg',
         name: 'Camp Khidma',
         social: {
-            facebook: 'https://facebook.com/khidma',
-            instagram: 'https://instagram.com/khidma',
-            youtube: 'https://youtube.com/khidma',
-            website: 'https://khidma.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     },
     'Olympia': {
         logo: 'JMCLogo.jpg',
         name: 'Camp Olympia',
         social: {
-            facebook: 'https://facebook.com/olympia',
-            instagram: 'https://instagram.com/olympia',
-            youtube: 'https://youtube.com/olympia',
-            website: 'https://olympia.org'
+            linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
+            website: 'https://the.ismaili/camps'
         }
     }
 };
@@ -129,16 +144,10 @@ function updateSignature() {
         textContent.push(`<br style="margin:0;padding:0;"><span style="margin:0;padding:0;line-height:1.2;">${contactParts.join(separator)}</span>`);
     }
 
-    // Social media icons - using Font Awesome for reliability
+    // Social media icons - only LinkedIn and Website
     const socialIcons = `
-        <a href="${camp.social.facebook}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
-            <span style="color:#1877f2;font-size:14px;font-weight:bold;">f</span>
-        </a>
-        <a href="${camp.social.instagram}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
-            <span style="color:#e4405f;font-size:14px;font-weight:bold;">📷</span>
-        </a>
-        <a href="${camp.social.youtube}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
-            <span style="color:#ff0000;font-size:14px;font-weight:bold;">▶</span>
+        <a href="${camp.social.linkedin}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
+            <span style="color:#0077b5;font-size:14px;font-weight:bold;">in</span>
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
             <span style="color:#0066cc;font-size:14px;font-weight:bold;">🌐</span>
@@ -234,7 +243,10 @@ function updateInstructions() {
 }
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load configuration first
+    await loadConfig();
+    
     // Form input listeners
     const formInputs = ['name', 'position', 'institution', 'region', 'email', 'phone'];
     formInputs.forEach(id => {
@@ -261,4 +273,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial signature update and instructions
     updateSignature();
     updateInstructions();
+    
+    // Force refresh after a short delay to ensure everything loads
+    setTimeout(() => {
+        updateSignature();
+    }, 100);
 }); 
