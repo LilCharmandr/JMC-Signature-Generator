@@ -134,7 +134,10 @@ function updateSignature() {
     if (name) textContent.push(`<span style="font-size:13px;font-weight:bold;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${name}</span>`);
     if (position) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${position}</span>`);
     if (institution && camp) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">${camp.name}</span>`);
-    if (region) textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">Jubilee Monuments Corp.${separator}${region}</span>`);
+    if (region) {
+        const regionText = region === 'National' ? 'United States of America' : region;
+        textContent.push(`<span style="font-size:11px;color:#222;margin:0;padding:0;line-height:1.2;font-family:Georgia,serif;">Jubilee Monuments Corp.${separator}${regionText}</span>`);
+    }
 
     // Contact line
     const contactParts = [];
@@ -150,7 +153,7 @@ function updateSignature() {
             <span style="color:#0077b5;font-size:14px;font-weight:bold;">in</span>
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
-            <span style="color:#0066cc;font-size:14px;font-weight:bold;">🌐</span>
+            <span style="color:#0066cc;font-size:12px;font-weight:bold;">●</span>
         </a>
     `;
 
@@ -177,7 +180,6 @@ function updateSignature() {
   <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
     <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
       <img src="${camp.logo}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
-      <div style="font-size:12px;color:#666666;text-align:center;margin:0;padding:0;line-height:1.2;">${camp.name}</div>
       <span style="margin:0;padding:0;line-height:1.2;">${socialIcons}</span>
     </td>
     <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
