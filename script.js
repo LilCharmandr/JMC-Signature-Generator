@@ -17,7 +17,7 @@ async function loadConfig() {
                     alt: "LinkedIn"
                 },
                 website: {
-                    url: "https://www.jubileemonuments.org",
+                    url: "https://sites.google.com/jubileemonuments.org/tesseranpt/",
                     icon: "https://effortless-arithmetic-48c93c.netlify.app/siteg.png",
                     alt: "Website"
                 }
@@ -34,7 +34,7 @@ const campData = {
         name: 'Jubilee Monuments Corp.',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     },
     'Mosaic': {
@@ -42,7 +42,7 @@ const campData = {
         name: 'Camp Mosaic',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     },
     'Embark': {
@@ -50,7 +50,7 @@ const campData = {
         name: 'Camp Embark',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     },
     'Al-Ummah': {
@@ -58,7 +58,7 @@ const campData = {
         name: 'Camp Al-Ummah',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     },
     'Vibe': {
@@ -66,7 +66,7 @@ const campData = {
         name: 'Camp Vibe',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     },
     'Khidma': {
@@ -74,7 +74,7 @@ const campData = {
         name: 'Camp Khidma',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     },
     'Olympia': {
@@ -82,7 +82,7 @@ const campData = {
         name: 'Camp Olympia',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
-            website: 'https://www.jubileemonuments.org'
+            website: 'https://sites.google.com/jubileemonuments.org/tesseranpt/'
         }
     }
 };
@@ -153,7 +153,7 @@ function updateSignature() {
             <span style="color:#0077b5;font-size:14px;font-weight:bold;">in</span>
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
-            <span style="color:#0066cc;font-size:12px;font-weight:bold;">●</span>
+            <span style="color:#0066cc;font-size:14px;font-weight:bold;">●</span>
         </a>
     `;
 
