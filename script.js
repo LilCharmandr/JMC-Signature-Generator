@@ -150,10 +150,10 @@ function updateSignature() {
     // Social media icons - only LinkedIn and Website
     const socialIcons = `
         <a href="${camp.social.linkedin}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
-            <span style="color:#0077b5;font-size:14px;font-weight:bold;">in</span>
+            <span style="color:#404040;font-size:14px;font-weight:bold;">in</span>
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
-            <span style="color:#0066cc;font-size:14px;font-weight:bold;">🌐</span>
+            <span style="color:#404040;font-size:14px;font-weight:bold;">🌐</span>
         </a>
     `;
 
