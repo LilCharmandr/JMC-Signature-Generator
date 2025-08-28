@@ -150,10 +150,10 @@ function updateSignature() {
     // Social media icons - only LinkedIn and Website
     const socialIcons = `
         <a href="${camp.social.linkedin}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
-            <img src="JMC Assets/Linkedin and Web Icon/LinkedIn Icon1.png" alt="LinkedIn" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
+            <img src="JMC Assets/Linkedin and Web Icon/LinkedIn Icon1.png?v=${Date.now()}" alt="LinkedIn" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
-            <img src="JMC Assets/Linkedin and Web Icon/Web Icon1.png" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
+            <img src="JMC Assets/Linkedin and Web Icon/Web Icon1.png?v=${Date.now()}" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
         </a>
     `;
 
@@ -179,7 +179,7 @@ function updateSignature() {
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="font-family:'Gotham Book',Georgia,serif;font-size:11px;color:#222;border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;line-height:1;background:transparent;background-color:transparent;">
   <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
     <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
-      <img src="${camp.logo}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
+             <img src="${camp.logo}?v=${Date.now()}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
       <span style="margin:0;padding:0;line-height:1.2;">${socialIcons}</span>
     </td>
     <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
