@@ -13,12 +13,12 @@ async function loadConfig() {
             socialMedia: {
                 linkedin: {
                     url: "https://www.linkedin.com/company/jubileemonumentscorp",
-                    icon: "https://effortless-arithmetic-48c93c.netlify.app/linkedin.png",
+                    icon: "JMC Assets/Linkedin and Web Icon/LinkedIn Icon1.png",
                     alt: "LinkedIn"
                 },
                 website: {
                     url: "https://www.jubileemonuments.org",
-                    icon: "https://effortless-arithmetic-48c93c.netlify.app/siteg.png",
+                    icon: "JMC Assets/Linkedin and Web Icon/Web Icon1.png",
                     alt: "Website"
                 }
             }
@@ -30,7 +30,7 @@ async function loadConfig() {
 // Camp data with social media links
 const campData = {
     'JMC': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Jubilee Monuments Corp.',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -38,7 +38,7 @@ const campData = {
         }
     },
     'Mosaic': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Camp Mosaic',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -46,7 +46,7 @@ const campData = {
         }
     },
     'Embark': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Camp Embark',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -54,7 +54,7 @@ const campData = {
         }
     },
     'Al-Ummah': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Camp Al-Ummah',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -62,7 +62,7 @@ const campData = {
         }
     },
     'Vibe': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Camp Vibe',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -70,7 +70,7 @@ const campData = {
         }
     },
     'Khidma': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Camp Khidma',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -78,7 +78,7 @@ const campData = {
         }
     },
     'Olympia': {
-        logo: 'JMCLogo.jpg',
+        logo: 'JMC Assets/Logo.png',
         name: 'Camp Olympia',
         social: {
             linkedin: 'https://www.linkedin.com/company/jubileemonumentscorp',
@@ -150,10 +150,10 @@ function updateSignature() {
     // Social media icons - only LinkedIn and Website
     const socialIcons = `
         <a href="${camp.social.linkedin}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0 4px 0 0;padding:0;text-decoration:none;">
-            <span style="color:#404040;font-size:14px;font-weight:bold;">in</span>
+            <img src="JMC Assets/Linkedin and Web Icon/LinkedIn Icon1.png" alt="LinkedIn" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
-            <img src="https://effortless-arithmetic-48c93c.netlify.app/siteg.png" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
+            <img src="JMC Assets/Linkedin and Web Icon/Web Icon1.png" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
         </a>
     `;
 

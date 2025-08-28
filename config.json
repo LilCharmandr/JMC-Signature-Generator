@@ -2,12 +2,12 @@
   "socialMedia": {
     "linkedin": {
       "url": "https://www.linkedin.com/company/jubileemonumentscorp",
-      "icon": "https://effortless-arithmetic-48c93c.netlify.app/linkedin.png",
+      "icon": "JMC Assets/Linkedin and Web Icon/LinkedIn Icon1.png",
       "alt": "LinkedIn"
     },
     "website": {
       "url": "https://www.jubileemonuments.org",
-      "icon": "https://effortless-arithmetic-48c93c.netlify.app/siteg.png",
+      "icon": "JMC Assets/Linkedin and Web Icon/Web Icon1.png",
       "alt": "Website"
     }
   },
