@@ -153,7 +153,7 @@ function updateSignature() {
             <span style="color:#404040;font-size:14px;font-weight:bold;">in</span>
         </a>
         <a href="${camp.social.website}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:0;padding:0;text-decoration:none;">
-            <span style="color:#404040;font-size:14px;font-weight:bold;">🌐</span>
+            <img src="https://effortless-arithmetic-48c93c.netlify.app/siteg.png" alt="Website" width="16" height="16" style="width:16px;height:16px;display:block;border:0;margin:0;padding:0;">
         </a>
     `;
 
