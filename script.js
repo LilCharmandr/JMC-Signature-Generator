@@ -179,8 +179,8 @@ function updateSignature() {
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="font-family:'Gotham Book',Georgia,serif;font-size:11px;color:#222;border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;padding:0;line-height:1;background:transparent;background-color:transparent;">
   <tr style="margin:0;padding:0;background:transparent;background-color:transparent;">
     <td width="95" style="width:95px;vertical-align:top;text-align:center;border-right:2px solid #ccc;padding:0 6px 0 0;margin:0;mso-padding-alt:0 6px 0 0;">
-             <img src="${camp.logo}?v=${Date.now()}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 5px auto;padding:0;">
-      <span style="margin:0;padding:0;line-height:1.2;">${socialIcons}</span>
+                    <img src="${camp.logo}?v=${Date.now()}" alt="JMC Logo" width="95" height="auto" style="width:95px;max-width:95px;height:auto;display:block;border:0;margin:0 auto 2px auto;padding:0;">
+       <span style="margin:0;padding:0;line-height:1.2;">${socialIcons}</span>
     </td>
     <td width="6" style="width:6px;margin:0;padding:0;font-size:1px;line-height:1;">&nbsp;</td>
     <td style="vertical-align:middle;text-align:left;font-family:'Gotham Book',Georgia,serif;margin:0;padding:0;">
